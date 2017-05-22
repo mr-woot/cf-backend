@@ -1,5 +1,5 @@
 {
-  "name": "node-todo-api",
+  "name": "cf-backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,8 +14,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "swagger-node-express": "~2.0",
-    "minimist": "*",
     "body-parser": "1.17.2",
     "bunyan": "^1.8.10",
     "consign": "^0.1.4",
@@ -23,7 +21,6 @@
     "lodash": "^4.17.4",
     "mongodb": "2.2.26",
     "mongoose": "4.10.0",
-    "mongoose-auto-increment": "^5.0.1",
     "request": "^2.81.0",
     "request-promise": "^4.2.1"
   },

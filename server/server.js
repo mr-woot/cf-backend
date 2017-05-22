@@ -26,9 +26,6 @@ const {
   Track
 } = require('./models/Track');
 
-// autoIncrement.initialize(mongoose.connection);
-
-// let idOfSearchQueries = 0;
 
 const port = process.env.PORT;
 
