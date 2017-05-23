@@ -5,6 +5,8 @@ let consign = require('consign');
 
 let app = express();
 
+app.use(express.static(__dirname + '/views'));
+
 app.all('*', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
@@ -44,6 +46,11 @@ const port = process.env.PORT;
 
 app.use(bodyParser.json());
 
+// GET /
+app.get('/', (req, res) => {
+  res.sendFile('./views/index.html');
+});
+
 // POST /searchHistory
 app.post('/searchHistory', (req, res) => {
   let trackInfo = new Track({
@@ -57,7 +64,7 @@ app.post('/searchHistory', (req, res) => {
       message: 'Successfully created'
     });
   }).catch((error) => {
-    res.status(400).send({
+    res.sendStatus(400).send({
       error,
       status: 400,
       message: 'Unable to post search query'
@@ -76,7 +83,7 @@ app.get('/searchHistory', (req, res) => {
       message: (result.length === 0) ? 'No results in the database' : 'Successfully fetched search history'
     });
   }).catch((error) => {
-    res.status(400).send({
+    res.sendStatus(400).send({
       error,
       status: 400,
       message: 'Unable to fetch search history'
@@ -100,19 +107,19 @@ app.get('/searchTrack', (req, res, next) => {
 app.delete('/deleteAll', (req, res) => {
   Track.remove({}).then((result) => {
     if (!result) {
-      res.status(400).send({
+      res.sendStatus(400).send({
         status: 400,
         message: 'Not Found'
       });
     } else {
-      res.status(200).send({
+      res.sendStatus(200).send({
         status: 200,
         message: 'Delete tracks successfully'
       });
     }
   })
   .catch((e) => {
-    res.status(400).send({
+    res.sendStatus(400).send({
       status: 400,
       message: e
     });
@@ -124,7 +131,7 @@ app.delete('/searchHistory/:id', (req, res) => {
   const id = req.params.id;
 
   if (!ObjectID.isValid(id)) {
-    return res.status(400).send({
+    return res.sendStatus(400).send({
       status: 400,
       message: 'Invalid ID'
     });
@@ -132,18 +139,18 @@ app.delete('/searchHistory/:id', (req, res) => {
 
   Track.findByIdAndRemove(id).then((result) => {
     if (!result) {
-      res.status(400).send({
+      res.sendStatus(400).send({
         status: 400,
         message: 'Not Found'
       });
     } else {
-      res.status(200).send({
+      res.sendStatus(200).send({
         status: 200,
         message: 'Successfully deleted'
       });
     }
   }).catch((e) => {
-    res.status(400).send({
+    res.sendStatus(400).send({
       status: 400,
       message: e
     });
