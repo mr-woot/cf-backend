@@ -96,6 +96,28 @@ app.get('/searchTrack', (req, res, next) => {
   trackController.searchTracks(req, res, next);
 });
 
+// DELETE /deleteAll
+app.delete('/deleteAll', (req, res) => {
+  Track.remove({}).then((result) => {
+    if (!result) {
+      res.status(400).send({
+        status: 400,
+        message: 'Not Found'
+      });
+    } else {
+      res.status(200).send({
+        status: 200,
+        message: 'Delete tracks successfully'
+      });
+    }
+  })
+  .catch((e) => {
+    res.status(400).send({
+      status: 400,
+      message: e
+    });
+  });
+})
 
 // DELETE /searchHistory/:id
 app.delete('/searchHistory/:id', (req, res) => {
