@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style type="text/css">
+            @font-face {
+                font-family: 'Calluna';
+                src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/callunasansregular-webfont.woff') format('woff');
+            }
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                /*font-family: 'Bad Script', cursive;*/
+                margin: 0 auto 10px;
+                background: url(//subtlepatterns.com/patterns/scribble_light.png);
+                font-family: Calluna, Arial, sans-serif;
+            }
+            .container {
+                width: 90%;
+                margin: 50px auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 style="text-align: center; margin-bottom: 40px;">ASSIGNMENT – CAPITAL FLOAT</h1>
+            <ul>
+                <li><h3>Music tracks listing web app that also keeps record of the search queries.</h3></li>
+                <li>
+                    <h3>Tech Stack Used:</h3>
+                    <ul>
+                        <li>NodeJs</li>
+                        <li>AngularJs</li>
+                        <li>ExpressJs</li>
+                        <li>MongoDb</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Architecture (2-tier):</h3>
+                    <ul>
+                        <li>Backend uses NodeJs, ExpressJs.</li>
+                        <li>Frontend uses AngularJs, Bower, HTML, CSS.</li>
+                        <li>3rd Party API used: Last.fm</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Use Cases:</h3>
+                    <ul>
+                        <li>Home Page lists top tracks worldwide (3rd Party Integration).</li>
+                        <li>Search Page finds matching tracks according to the track name (3rd Party Integration).</li>
+                        <li>Search Page simultaneously also saves the search history in the custom backend using the API created.</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Additional features:</h3>
+                    <ul>
+                        <li>Delete all history (API functionality only).</li>
+                        <li>Delete specific searched key (API functionality only).</li>
+                        <li>3rd Party API integrated in custom backend, so as to have modularity in code.</li>
+                        <li>Recently searched queries (Always displays unique search queries).</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Internal Flow:</h3>
+                    <ul>
+                        <li>User requests for e.g. ‘/tracks’, frontend fires API request to the custom backend, which in turn sends the response collected from the 3rd Party API response.</li>
+                        <li>For search history, query searched is send via POST request to the custom backend which validates the query and in turn saves the query in the mongo database which is hosted on mLab platform via Heroku.</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Access Links:</h3>
+                    <ul>
+                        <li>
+                            <h3>API Collection:</h3>
+                            <ul>
+                                <li><a href="https://www.getpostman.com/collections/565b9ce20bfb9b7a984a">https://www.getpostman.com/collections/565b9ce20bfb9b7a984a</a></li>
+                                <li>Usage: Install Postman if not installed, else simply import the collection from the link.</li>
+                            </ul>
+                        </li>
+                        <li><h3 style="display: inline">Backend: </h3><a href="https://cf-backend.herokuapp.com">https://cf-backend.herokuapp.com</a></li>
+                        <li><h3 style="display: inline">Frontend: </h3><a href="https://cf-frontend.herokuapp.com">https://cf-frontend.herokuapp.com</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>API Endpoints:</h3>
+                    <ul>
+                        <li>
+                            <h3>Frontend:</h3>
+                            <ul>
+                                <li>‘/’: Displays top tracks worldwide.</li>
+                                <li>‘/search’: Searches for the given track.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h3>Backend:</h3>
+                            <ul>
+                                <li>‘GET /tracks’: Fetches top tracks worldwide.</li>
+                                <li>‘GET /searchTrack?track={query}’: Searches for a query.</li>
+                                <li>‘GET /searchHistory’: Get the saved search history.</li>
+                                <li>‘POST /searchHistory’: Saves the recently searched track to the db.</li>
+                                <li>‘DELETE /searchHistory’: Deletes all the searched tracks in the db.</li>
+                                <li>‘DELETE /searchHistory/:id’: Deletes specific track from db, where id being Mongo ObjectID.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
