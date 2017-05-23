@@ -48,7 +48,7 @@ app.use(bodyParser.json());
 
 // GET /
 app.get('/', (req, res) => {
-  res.sendFile('./views/index.html');
+  res.sendFile('/views/index.html');
 });
 
 // POST /searchHistory
